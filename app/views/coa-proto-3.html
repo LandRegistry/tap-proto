@@ -1,0 +1,590 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+/* table */
+
+.govuk-table__header, .govuk-table__cell {
+  border: none;
+}
+
+.tab {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* end of table */
+
+/* modal */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* end of modal */
+  
+/* timeline */
+
+#conference-timeline {
+  position: relative;
+  max-width: auto;
+  width: 100%;
+  align-items: left;
+  margin-left: 0px;
+
+}
+
+#conference-timeline .conference-center-line {
+  position: absolute;
+  width: 1px;
+  height: 90%;
+  top: 0;
+  bottom: 0px;
+  left: 7px;
+  margin-left: -1px;
+  background: #BFC1C3;
+
+}
+#conference-timeline .conference-timeline-content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.timeline-article {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.timeline-article .content-right-container {
+  max-width: 95%;
+  width: 100%;
+  margin-left: -20px;
+}
+
+
+.timeline-article .content-right {
+  position: relative;
+  width: 100%;
+  padding: 5px 3px;
+}
+.timeline-article p {
+  margin: 0 0 0 20;
+  padding: 0 0 0 0;
+  font-weight: 400;
+  color: #242424;
+  font-size: 16px;
+  line-height: 5px;
+  position: relative;
+}
+
+.timeline-article .content-right-container {
+  float: right;
+}
+
+.timeline-article .content-right:before{
+  position: absolute;
+  content: "";
+  left: 8px;
+  top: 20px;
+  font-size: 23px;
+  color: #fff;
+}
+
+.timeline-article .meta-date {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 7px;
+  height: 7px;
+  margin-left: -18px;
+  border-radius: 100%;
+  border: 1px solid #BFC1C3;
+  background: #BFC1C3;
+}
+
+.timeline-article .meta-date .date {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  color: #BFC1C3;
+
+}
+.timeline-article .meta-date .date {
+  font-size: 14px;
+  line-height: 10px;
+
+}
+
+/* timeline end */
+
+/* add modal */
+
+#modalContainer {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /*background-color: rgb(0, 0, 0);*/
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 0px;
+  height: 300px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  margin-top: 0px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* add modal end */
+
+/* dropdon */
+
+.form-control {
+  font: 500 16px/1.3 "Helvetica", sans-serif;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid #6f777b;
+  width: 300px;
+  line-height: 1;
+  outline: 0;
+  color: #6f777b
+  border-color: #6f777b;
+  padding: 0.65em 2.5em 0.55em 0.75em;
+  border-radius: 0px;   
+}
+
+.form-control:before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 8px;
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #f00;
+}
+
+.form-control:after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 3px;
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #333;
+}
+
+
+/* dropdown end */
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="#" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+  <!-- The Modal -->
+
+  <div id="modalContainer">
+
+  <div class="modal-content">
+    <span class="close" style="margin-right: 20px; margin-top: 20px;">&times;</span>
+    <h2 h2 class="govuk-heading-m" style="margin-left: 20px; margin-top: 25px;">Add new action</h2>
+    <hr>
+
+    <p style="margin-left: 20px; margin-top: 20px;">Why is this action needed?</p>
+
+    <div class="form-group">
+
+    <div class="form-group" style="margin-left: 20px; margin-top: -10px;">
+   <select class="form-control" id="dropdown" onchange="showForm()">
+    <option value="">Select reason</option>
+    <option value="" disabled="disabled">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</option>
+    <option value="chargeDiv">Raise requisition</option>
+    <option value="error">Refer application</option>
+    <option value="transferDiv">Reject application</option>
+    <option value="4">Cancel application</option>
+    <option value="4">Request files</option>
+    <option value="4">Issue Notice</option>
+    <option value="4">Record decision</option>
+    <option value="" disabled="disabled">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</option>
+    <option value="chargeDiv">None of the above</option>
+  </select>
+
+  <form id="chargeDiv" class="display-none" method="post" action="where-you-want-to-post/book">
+    <div class="form-group">
+      <p>What needs to be done next</p>
+    </div>
+  </form>
+</div>
+
+  
+  
+
+</div>
+
+<!--div class="form-group" style="margin-left: 20px; margin-top: -10px;">
+   <select class="form-control" id="dropdown" onchange="showForm()">
+    <option value="">Select reason</option>
+    <option value="" disabled="disabled">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</option>
+    <option value="chargeDiv">Raise requisition</option>
+    <option value="error">Refer application</option>
+    <option value="transferDiv">Reject application</option>
+    <option value="4">Cancel application</option>
+    <option value="4">Request files</option>
+    <option value="4">Issue Notice</option>
+    <option value="4">Record decision</option>
+    <option value="" disabled="disabled">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</option>
+    <option value="chargeDiv">None of the above</option>
+  </select>
+</div>
+
+  <form id="chargeDiv" class="display-none" method="post" action="where-you-want-to-post/book">
+    <div class="form-group">
+  <fieldset>
+
+    <p>What needs to be done?</p>
+
+    <div class="form-group" style="margin-left: 20px; margin-top: -10px;">
+   <select class="form-control" id="dropdown" onchange="showForm()"><span>&#9660;</span>
+    <option value="">Select reason</option>
+    <option value="" disabled="disabled">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</option>
+    <option value="chargeDiv">Raise requisition</option>
+    <option value="error">Refer application</option>
+    <option value="transferDiv">Reject application</option>
+    <option value="4">Cancel application</option>
+    <option value="4">Request files</option>
+    <option value="4">Issue Notice</option>
+    <option value="4">Record decision</option>
+    <option value="" disabled="disabled">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</option>
+    <option value="chargeDiv">None of the above</option>
+  </select>
+</div>
+
+</fieldset>
+
+</form-->
+
+</div>
+
+  </div>
+
+</div>
+
+  <!-- Modal content -->
+  
+
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-tabs" data-module="tabs">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#overview" style="font-weight: bold;">
+        Overview
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#documents" style="font-weight: bold;">
+        Documents
+      </a>
+    </li>
+  </ul>
+
+  <section class="govuk-tabs__panel" id="overview" style="border-left: none; border-right: none; border-bottom: none; padding-left: 0px; padding-right: 0px;">
+    <h2 class="govuk-heading-m">Overview of application</h2>
+
+<div class="" style="margin-top: -20px;">
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="col"></th>
+      <th class="govuk-table__header" scope="col"></th>
+      <th class="govuk-table__header" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row" style="font-size: medium;">Priority date</th>
+      <td class="govuk-table__cell" style="font-size: medium;">12/08/2018</td>
+      <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row" style="font-size: medium;">Title number</th>
+      <td class="govuk-table__cell" style="font-size: medium;">123456789</td>
+      <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row" style="font-size: medium;">Customer name</th>
+      <td class="govuk-table__cell" style="font-size: medium;">Tollers</td>
+      <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row" style="font-size: medium;">Application type</th>
+      <td class="govuk-table__cell" style="font-size: medium;">Change of address</td>
+      <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Open</a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row" style="font-size: medium;">Transaction type(s)</th>
+      <td class="govuk-table__cell" style="font-size: medium;">COA</td>
+      <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row" style="font-size: medium;">Application applies to</th>
+      <td class="govuk-table__cell" style="font-size: medium;">Whole of the title</td>
+      <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row"style="font-size: medium;">Value or price paid</th>
+      <td class="govuk-table__cell"style="font-size: medium;">NA</td>
+      <td class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row" style="font-size: medium;">Fees paid</th>
+      <td class="govuk-table__cell" style="font-size: medium;">£0.00</td>
+      <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Amend fee</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!--h2 class="govuk-heading-m">Keywords</h2>
+
+<div style="width: 100px; height: 30px; background-color: #6f777b; float: left; margin-top: 0px; ">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Boundary</p>
+            </div>
+            <div style="width: 150px; height: 30px; background-color: #6f777b; float: left; margin-top: 0px; margin-left: 20px; "">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Restriction</p>
+            </div>
+            <div style="width: 80px; height: 30px; background-color: #6f777b; float: left; margin-left: 20px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Charge</p>
+            </div>
+            <div style="width: 80px; height: 30px; background-color: #6f777b; float: left; margin-left: 20px; margin-right: 20px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Merger</p>
+            </div>
+            <div style="width: 150px; height: 30px; background-color: #6f777b; float: left; margin-left: 0px; margin-top: 10px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Power of attorney</p>
+            </div>
+            <div style="width: 80px; height: 30px; background-color: #6f777b; float: left; margin-left: 20px; margin-top: 10px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Transfer</p>
+            </div>
+
+            <div style="clear: left;"></div-->
+ 
+</section>
+
+  <section class="govuk-tabs__panel" id="documents" style="border-left: none; border-right: none; border-bottom: none; padding-left: 0px; padding-right: 0px;">
+    <h2 class="govuk-heading-m">Documents lodged with this application (1)</h2>
+    <div style="width: 190;height: 260px;border:1px solid #6f777b;background: transparent; float: left;">
+      <img src="/public/images/ecoa1.png" style="width: 180px; height:260px;">
+      <div style="margin-top: -5px; font-size: 12px;">Date received: 12/08/2018</div>
+    </div>
+    
+    <div style="width: 190px;height: 259px;border:1px solid #dee0e2; margin-left: 30px; float: left;"></div>
+    <div style="width: 190px;height: 259px;border:1px solid #dee0e2; margin-left: 30px; float: left;"></div>
+
+    <div style="clear: left;"></div>
+
+  </section>
+
+</div>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <h3 class="govuk-heading-m">Next action(s)</h3>
+        <p class="govuk-body" style="font-size: medium;">There are no new actions.</p>
+
+      <div class="addButton" style="margin-left: 120px;"><a href=""><img src="/public/images/addButton2.png" style="width: 65px; height: 65px;"></a>
+      <div style="margin-left: -20px; margin-top: 0px;"><a href="#" id="myBtn">Add new action</a></div>
+      </div>
+
+
+
+<hr style="color: #dee0e2; margin-top: 30px;">
+
+<div class="" style=" border-top: #dee0e2; border-bottom: #dee0e2 margin-top: 10px; margin-bottom: -5px;">
+  
+  <p class="govuk-body" style="font-size: medium;"><a href="">Defer</a></span> <span style="margin-left: 40px;"><a href="">Progress later</a></span></p>  
+</div>
+
+<hr style="color: #dee0e2">
+
+<!--p style="margin-top: -15px; font-size: medium; float: left;"><a href="">Defer</a><span style="margin-left: 30px;"><a href="">Progress later</a></span></p-->
+
+<div style="clear: left;"></div>
+
+<h3 class="govuk-heading-m" style="margin-top: 20px;">Activity</h3>
+  
+  <section id="conference-timeline">
+
+    <div class="conference-center-line"></div>
+    <div class="conference-timeline-content">
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="govuk-body" style="color: #BFC1C3">Today</p>
+            <p class="govuk-body">Application does not relate to this title...</p>
+            <p class="govuk-body"> <a href="">See more</a></p>
+            <p>Raised by Charlotte Fretwell</p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+          
+        </div>
+      </div>
+      <!-- // Article -->
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="govuk-body" style="color: #BFC1C3">Yesterday</p>
+            <p class="govuk-body">It is satis to use the address of Church...</p>
+            <p class="govuk-body"> <a href="">See more</a></p>
+            <p>Raised by Will Simons</p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+          
+        </div>
+      </div>
+      <!-- // Article -->
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="govuk-body" style="color: #BFC1C3">14 Aug 2018</p>
+            <p class="govuk-body">This application received for change of...</p>
+            <p class="govuk-body"> <a href="">See more</a></p>
+            <p>Raised by Sal Capell</p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+          
+        </div>
+      </div>
+      <!-- // Article -->
+
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="content-complete"><a href="">See all activity</a></p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+      <!-- // Article -->
+      
+    </div>
+
+  </section>
+</div>
+</div>
+
+</main>
+
+<script>
+  
+$(document).ready(function() {
+
+
+  $("#myBtn").on("click", function() {
+    $("#modalContainer").show();
+  });
+
+  $(".close").on("click", function() {
+    $("#modalContainer").hide();
+  });
+
+});
+
+    var showForm = function() {
+    var allForms = document.getElementsByTagName('form');
+    var dropdown = document.getElementById("dropdown");
+    if (dropdown.value != "-1") {
+        var form = document.getElementById(dropdown.value);
+        for (var i = 0; i < allForms.length; i++) {
+            allForms[i].setAttribute("class", "display-none");
+        }
+        form.setAttribute("class", "");
+    }
+}
+
+</script>
+</div>
+
+
+{% endblock %}
