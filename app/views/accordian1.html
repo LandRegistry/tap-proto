@@ -15,11 +15,54 @@
   border: none;
 }
 
-/*.govuk-table__header {
-  width: 300px;
-}*/
+.tab {
+  display: inline-block;
+  margin-left: 5px;
+}
 
 /* end of table */
+
+/* collapsible */
+
+.collapsible {
+    background-color: #f8f8f8;
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #dee0e2;
+}
+
+.collapsible:after {
+    content: '\002B';
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    margin-top: -45px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: white;
+}
+
+/* end of collapsible */
   
 /* timeline */
 
@@ -61,7 +104,6 @@
   width: 100%;
   margin-left: -20px;
 }
-
 
 .timeline-article .content-right {
   position: relative;
@@ -126,29 +168,48 @@
   <main class="govuk-main-wrapper">
 
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-tabs" data-module="tabs">
-  <h2 class="govuk-tabs__title">
-    Contents
-  </h2>
+      <div class="govuk-grid-column-full">
+        <button class="collapsible">
+          <span>
+            <table style="width: 80%;">
+              <tbody>
+                <tr style="font-size: 18px;">
+                  <th scope="row" style="border: none; padding-left: 0px;"><span style="font-weight: normal; color: #6f777b;">Priority date</span><br><span style="font-weight: normal;">12/08/2018</span></th>
+                  <td scope="row" style="border: none; padding-left: 23px;"><span style="font-weight: normal; color: #6f777b;">Title number</span><br><span style="font-weight: normal;">123456789</span></td>
+                  <td scope="row" style="border: none; padding-left: -20px;"><span style="font-weight: normal; color: #6f777b;">Customer name</span><br><span style="font-weight: normal;">Gilbert Stephens LLP</span></td>
+                  <td scope="row" style="border: none; padding-left: -50px;"><span style="font-weight: normal; color: #6f777b;">Application type</span><br><span style="font-weight: normal;">Transfer</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </span>
+        </button>
+          
+        <div class="content">
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds" style="padding-left: 0px; padding-top: -40px;">
+
+        <div class="govuk-tabs" data-module="tabs" style="margin-top: 40px;">
+
 
   <ul class="govuk-tabs__list">
     <li class="govuk-tabs__list-item">
-      <a class="govuk-tabs__tab" href="#overview">
+      <a class="govuk-tabs__tab" href="#overview" style="font-weight: bold;">
         Overview
       </a>
     </li>
     <li class="govuk-tabs__list-item">
-      <a class="govuk-tabs__tab" href="#documents">
+      <a class="govuk-tabs__tab" href="#documents" style="font-weight: bold;">
         Documents
       </a>
     </li>
   </ul>
 
   <section class="govuk-tabs__panel" id="overview" style="border-left: none; border-right: none; border-bottom: none; padding-left: 0px; padding-right: 0px;">
-    <h2 class="govuk-heading-m">Overview</h2>
+    <h2 class="govuk-heading-m">Overview of application</h2>
 
-    <table class="govuk-table">
+<div class="" style="margin-top: -20px;">
+<table class="govuk-table">
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="col"></th>
@@ -157,26 +218,7 @@
     </tr>
   </thead>
   <tbody class="govuk-table__body">
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="row" style="font-size: medium;">Priority date</th>
-      <td class="govuk-table__cell" style="font-size: medium;">12/08/2018</td>
-      <td class="govuk-table__cell"></td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="row" style="font-size: medium;">Title number</th>
-      <td class="govuk-table__cell" style="font-size: medium;">123456789</td>
-      <td class="govuk-table__cell"></td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="row" style="font-size: medium;">Customer name</th>
-      <td class="govuk-table__cell" style="font-size: medium;">Gilbert Stephens LLP</td>
-      <td class="govuk-table__cell"></td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header" scope="row" style="font-size: medium;">Application type</th>
-      <td class="govuk-table__cell" style="font-size: medium;">Transfer</td>
-      <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Open</a></td>
-    </tr>
+    
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="row" style="font-size: medium;">Transaction type(s)</th>
       <td class="govuk-table__cell" style="font-size: medium;">DTC, COA</td>
@@ -190,7 +232,7 @@
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="row" style="font-size: medium;">Which part of the title</th>
       <td class="govuk-table__cell" style="font-size: medium;">Part edged in red</td>
-      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">View</a></td>
     </tr>
     <tr class="govuk-table__row">
       <th class="govuk-table__header" scope="row"style="font-size: medium;">Value or price paid</th>
@@ -204,9 +246,11 @@
     </tr>
   </tbody>
 </table>
-    
 
-  </section>
+</div>
+  
+</section>
+
   <section class="govuk-tabs__panel" id="documents" style="border-left: none; border-right: none; border-bottom: none; padding-left: 0px; padding-right: 0px;">
     <h2 class="govuk-heading-m">Documents lodged with this application (4)</h2>
     <table class="govuk-table">
@@ -215,28 +259,33 @@
           <th class="govuk-table__header" scope="col" style="border-bottom: 1px solid #BFC1C3;">Document name</th>
           <th class="govuk-table__header" scope="col" style="border-bottom: 1px solid #BFC1C3;">Type</th>
           <th class="govuk-table__header" scope="col" style="border-bottom: 1px solid #BFC1C3;"></th>
+          <th class="govuk-table__header" scope="col" style="border-bottom: 1px solid #BFC1C3;"></th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
           <td class="govuk-table__cell" style="font-size: medium;">Transfer</td>
           <td class="govuk-table__cell" style="font-size: medium;">Pdf</td>
-          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">View</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Preview</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Open</a></td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell" style="font-size: medium;">Change of address</td>
           <td class="govuk-table__cell" style="font-size: medium;">Pdf</td>
-          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">View</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Preview</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Open</a></td>
         </tr>
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="font-size: medium;">Another document</td>
+          <td class="govuk-table__cell" style="font-size: medium;">Correspondence</td>
           <td class="govuk-table__cell" style="font-size: medium;">Pdf</td>
-          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">View</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Preview</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Open</a></td>
         </tr>
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell" style="font-size: medium;">Another document</td>
+          <td class="govuk-table__cell" style="font-size: medium;">Correspondence</td>
           <td class="govuk-table__cell" style="font-size: medium;">Pdf</td>
-          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">View</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Preview</a></td>
+          <td class="govuk-table__cell" style="font-size: medium; text-align: right;"><a href="../index.html">Open</a></td>
         </tr>
       </tbody>
     </table>
@@ -244,10 +293,36 @@
   </section>
 
 </div>
-      </div>
 
-      <div class="govuk-grid-column-one-third">
-        <h3 class="govuk-heading-m">Next action(s)</h3>
+
+</div>
+
+<div class="govuk-grid-column-one-third" style="padding-top: 30px; padding-right: 0px;">
+  <h3 class="govuk-heading-m">Keywords</h3>
+
+    <div style="width: 100px; height: 30px; background-color: #6f777b; float: left; margin-top: 0px; ">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px; ">Boundary</p>
+            </div>
+            <div style="width: 110px; height: 30px; background-color: #6f777b; float: left; margin-top: 0px; margin-bottom: 10px; margin-left: 20px; "">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Restriction</p>
+            </div>
+
+            <div style="width: 80px; height: 30px; background-color: #6f777b; float: left; margin-left: 0px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Charge</p>
+            </div>
+            <div style="width: 80px; height: 30px; background-color: #6f777b; float: left; margin-left: 20px; margin-right: 20px; margin-bottom: 10px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Merger</p>
+            </div>
+            <div style="width: 150px; height: 30px; background-color: #6f777b; float: left; margin-left: 0px; margin-top: 0px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Power of attorney</p>
+            </div>
+            <div style="width: 80px; height: 30px; background-color: #6f777b; float: left; margin-left: 20px; margin-top: 0px;">
+              <p class="govuk-body" style="font-size: medium; color: #FFFFFF; text-align: center; padding-top: 5px;">Transfer</p>
+            </div>
+
+            <div style="clear: left;"></div>
+
+  <h3 class="govuk-heading-m" style="margin-top: 30px;">Next action(s)</h3>
         <p class="govuk-body" style="font-size: medium;">Applicant is not the registered proprietor of the property.<br><br>Please review and assess evidence for 
 restriction.</p>
 
@@ -270,7 +345,7 @@ restriction.</p>
 
 <div style="clear: left;"></div>
 
-<h3 class="govuk-heading-m" style="margin-top: 20px;">Activity</h3>
+<h3 class="govuk-heading-m" style="margin-top: 30px;">Activity</h3>
   
   <section id="conference-timeline">
 
@@ -325,8 +400,35 @@ restriction.</p>
     </div>
 
   </section>
-</div>
-</div>
+
+      </div>
+    
+          </div>
+
+</div> 
+ 
+
+        </div>
+          
+        </div> 
+        </div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
 
 </main>
 </div>
