@@ -1,0 +1,317 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+.topSeparatingLine {
+  width: 100%;
+  border-bottom: 4px solid #6f777b;
+  margin-top: -60px;
+  padding-bottom: 20px;
+}
+
+.bottomSeparatingLine {
+  width: 100%;
+  border-bottom: 1px solid #6f777b;
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+/* controls */
+
+.applicationControls {
+  float: left;
+  margin-right: 60px;
+  margin-top: 20px;
+}
+
+.applicationControls a {
+  text-decoration: none;
+}
+
+/* controls end */
+
+/* table */
+
+.govuk-table__header, .govuk-table__cell {
+  border-top: 1;
+}
+
+.tab {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* end of table */
+
+/* The Close Button */
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* end of modal */
+  
+/* timeline */
+
+#conference-timeline {
+  position: relative;
+  max-width: auto;
+  width: 100%;
+  align-items: left;
+  margin-left: 0px;
+
+}
+
+#conference-timeline .conference-center-line {
+  position: absolute;
+  width: 1px;
+  height: 90%;
+  top: 0;
+  bottom: 0px;
+  left: 7px;
+  margin-left: -1px;
+  background: #BFC1C3;
+
+}
+#conference-timeline .conference-timeline-content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.timeline-article {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.timeline-article .content-right-container {
+  max-width: 95%;
+  width: 100%;
+  margin-left: -20px;
+}
+
+
+.timeline-article .content-right {
+  position: relative;
+  width: 100%;
+  padding: 5px 3px;
+}
+.timeline-article p {
+  margin: 0 0 0 20;
+  padding: 0 0 0 0;
+  font-weight: 400;
+  color: #242424;
+  font-size: 16px;
+  line-height: 5px;
+  position: relative;
+}
+
+.timeline-article .content-right-container {
+  float: right;
+}
+
+.timeline-article .content-right:before{
+  position: absolute;
+  content: "";
+  left: 8px;
+  top: 20px;
+  font-size: 23px;
+  color: #fff;
+}
+
+.timeline-article .meta-date {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 7px;
+  height: 7px;
+  margin-left: -18px;
+  border-radius: 100%;
+  border: 1px solid #BFC1C3;
+  background: #BFC1C3;
+}
+
+.timeline-article .meta-date .date {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  color: #BFC1C3;
+
+}
+.timeline-article .meta-date .date {
+  font-size: 14px;
+  line-height: 10px;
+
+}
+
+/* timeline end */
+
+/* add modal */
+
+#modalContainer {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /*background-color: rgb(0, 0, 0);*/
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 0px;
+  height: 350px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  margin-top: 0px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* add modal end */
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="coa-proto-12" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+  
+
+<h1 class="govuk-heading-xl">COA: unidentified document<br><span style="font-size: 30px; color: #6f777b;"> for title number <span style="color: #0b0c0c;">EGL22376</span></span></h1>
+
+<div class="topSeparatingLine"></div>
+
+<div style="height: 20px;"></div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <div style="height: 10px;"></div>
+  
+ <div style="width: 630px;height: 870px; border:1px solid #6f777b;background: transparent; float: left;">
+    <img src="/public/images/ecoa2.png" style="width: 630px; height:870px;">
+</div>
+    
+</div>
+
+<div class="govuk-grid-column-one-third">
+
+<div style="height: 15px;"></div>
+
+<div style="width: 157px;height: 217px; border:1px solid #6f777b;background: transparent; float: left;">
+    <img src="/public/images/ecoa2.png" style="width: 157px; height:217px;">
+</div>
+
+<div style="float: left;">
+
+<p style="margin-top: -3px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Title:<br></span>Title of document<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
+
+    <p style="margin-top: -15px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Date received:<br></span>12/08/2018</p>
+
+  </div>
+
+    <div style="clear: left;"></div>
+    <div style="clear: right;"></div>
+  
+<div style="margin-top: 20px;"></div> 
+
+<div style="height: 15px;"></div>
+
+<div style="width: 157px;height: 217px; border:1px solid #6f777b;background: transparent; float: left;">
+    <img src="/public/images/ecoa3.png" style="width: 157px; height:217px;">
+</div>
+
+<div style="float: left;">
+
+<p style="margin-top: -3px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Title:<br></span>Death certificate<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
+
+    <p style="margin-top: -15px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Date received:<br></span>12/08/2018</p>
+
+  </div>
+
+    <div style="clear: left;"></div>
+    <div style="clear: right;"></div>
+  
+<div style="margin-top: 20px;"></div>
+
+        
+  
+  
+
+      </div>
+    </div>
+
+
+
+  </main>
+</div>
+
+
+
+<script>
+
+  
+$(document).ready(function() {
+
+
+  $("#myBtn").on("click", function() {
+    $("#modalContainer").show();
+  });
+
+  $(".close").on("click", function() {
+    $("#modalContainer").hide();
+  });
+
+});
+
+    var showForm = function() {
+    var allForms = document.getElementsByTagName('form');
+    var dropdown = document.getElementById("dropdown");
+    if (dropdown.value != "-1") {
+        var form = document.getElementById(dropdown.value);
+        for (var i = 0; i < allForms.length; i++) {
+            allForms[i].setAttribute("class", "display-none");
+        }
+        form.setAttribute("class", "");
+    }
+}
+
+</script>
+</div>
+
+
+{% endblock %}
