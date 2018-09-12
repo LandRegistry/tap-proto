@@ -202,14 +202,86 @@
 
 /* add modal end */
 
+/* layout */
+
+#wrapper {
+  width: 950px;
+  margin: 0 auto;
+}
+
+#leftcolumn,
+#rightcolumn {
+  border: 1px solid black;
+  float: left;
+  min-height: 830px;
+  color: white;
+  margin-left: -2px
+}
+
+#leftcolumn {
+  width: 650px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+#rightcolumn {
+  width: 268px;
+  background-color: #ffffff;
+  margin-left: 30px;
+  border: none;
+}
+
+.staticImage {
+  position: absolute;
+}
+
+/* layout ends */
+
+/* document gallery */
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+    /*float: left;
+    width: 0%;
+    padding: 10px;*/
+}
+
+/* Style the images inside the grid */
+.column img{ 
+    cursor: pointer; 
+}
+
+.column img:hover,
+.column img:focus {
+    outline: 3px solid #ffbf47;
+    opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The expanding image container */
+.container {
+    position: relative;
+    display: none;
+    margin-top: -18px;
+}
+
+/* document gallery end */
+
 </style>
 
 <div class="govuk-width-container">
-  <a href="coa-proto-12" class="govuk-back-link">Back</a>
+  <a href="coa-proto-1" class="govuk-back-link">Back</a>
 
   <main class="govuk-main-wrapper">
 
-  
+ <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
 <h1 class="govuk-heading-xl">COA: unidentified document<br><span style="font-size: 30px; color: #6f777b;"> for title number <span style="color: #0b0c0c;">EGL22376</span></span></h1>
 
@@ -217,69 +289,70 @@
 
 <div style="height: 20px;"></div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-  <div style="height: 10px;"></div>
-
-<div style="margin-top: -10px;">
+<div style="margin-top: 0px;">
   <p style="margin-top: -2px; margin-left: 0px; font-size: 28px;"><span style="font-weight: bold;">Title:</span> Title of document</p>
 </div>
-  
- <div style="width: 630px;height: 870px; border:1px solid #6f777b;background: transparent; float: left;">
-    <img src="/public/images/ecoa2.png" style="width: 630px; height:870px;">
-</div>
-    
-</div>
 
-<div class="govuk-grid-column-one-third">
+<div id="wrapper">
+  <div id="leftcolumn">
 
-<div style="height: 15px;"></div>
-
-<div style="width: 157px;height: 217px; border:1px solid #6f777b;background: transparent; float: left;">
-    <img src="/public/images/ecoa2.png" style="width: 157px; height:217px;">
-</div>
-
-<div style="float: left;">
-
-<p style="margin-top: -3px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Title:<br></span>Title of document<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
-
-    <p style="margin-top: -15px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Date received:<br></span>12/08/2018</p>
-
-  </div>
-
-    <div style="clear: left;"></div>
-    <div style="clear: right;"></div>
-  
-<div style="margin-top: 20px;"></div> 
-
-<div style="height: 15px;"></div>
-
-<div style="width: 157px;height: 217px; border:1px solid #6f777b;background: transparent; float: left;">
-    <img src="/public/images/ecoa3.png" style="width: 157px; height:217px;">
-</div>
-
-<div style="float: left;">
-
-<p style="margin-top: -3px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Title:<br></span>Death certificate<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
-
-    <p style="margin-top: -15px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Date received:<br></span>12/08/2018</p>
-
-  </div>
-
-    <div style="clear: left;"></div>
-    <div style="clear: right;"></div>
-  
-<div style="margin-top: 20px;"></div>
-
-        
-  
-  
-
-      </div>
+    <div class="staticImage" style="margin-top: 0px;">
+      <img src="/public/images/ecoa2.png" style="width: 650px; height:812px;">
     </div>
 
+    <div class="container">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <img id="expandedImg" style="width:100%">
+      <div id="imgtext"></div>
+    </div>   
 
+  </div>
+  <div id="rightcolumn">
+
+    <div class="row">
+
+      <div class="column" style="width: 137px;height: 200px; border:1px solid #6f777b;background: transparent; float: left;">
+          <img src="/public/images/ecoa2.png" style="width: 137px; height:200px;" onclick="myFunction(this)">
+      </div>
+
+      <div style="float: left;">
+
+          <p style="margin-top: -3px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Title:<br></span>Title of document<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
+
+          <p style="margin-top: -15px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Date received:<br></span>12/08/2018</p>
+
+        </div>
+
+          <div style="clear: left;"></div>
+          <div style="clear: right;"></div>
+
+      <div style="height: 20px;"></div>
+
+      <div class="column" style="width: 137px;height: 200px; border:1px solid #6f777b;background: transparent; float: left;">
+          <img src="/public/images/ecoa3.png" style="width: 137px; height:200px;" onclick="myFunction(this)">
+      </div>
+
+      <div style="float: left;">
+
+          <p style="margin-top: -3px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Title:<br></span>Title of document<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
+
+          <p style="margin-top: -15px; margin-left: 10px; font-size: 12px;"><span style="font-weight: bold;">Date received:<br></span>12/08/2018</p>
+
+        </div>
+
+          <div style="clear: left;"></div>
+          <div style="clear: right;"></div>
+
+  </div>
+
+
+
+  </div>
+
+</div>
+
+  </div>
+</div>
 
   </main>
 </div>
@@ -288,30 +361,12 @@
 
 <script>
 
-  
-$(document).ready(function() {
-
-
-  $("#myBtn").on("click", function() {
-    $("#modalContainer").show();
-  });
-
-  $(".close").on("click", function() {
-    $("#modalContainer").hide();
-  });
-
-});
-
-    var showForm = function() {
-    var allForms = document.getElementsByTagName('form');
-    var dropdown = document.getElementById("dropdown");
-    if (dropdown.value != "-1") {
-        var form = document.getElementById(dropdown.value);
-        for (var i = 0; i < allForms.length; i++) {
-            allForms[i].setAttribute("class", "display-none");
-        }
-        form.setAttribute("class", "");
-    }
+function myFunction(imgs) {
+    var expandImg = document.getElementById("expandedImg");
+    var imgText = document.getElementById("imgtext");
+    expandImg.src = imgs.src;
+    imgText.innerHTML = imgs.alt;
+    expandImg.parentElement.style.display = "inline-block";
 }
 
 </script>

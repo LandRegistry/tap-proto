@@ -1,0 +1,109 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+.topSeparatingLine {
+  width: 100%;
+  border-bottom: 4px solid #6f777b;
+  margin-top: -60px;
+  padding-bottom: 20px;
+}
+
+.bottomSeparatingLine {
+  width: 100%;
+  border-bottom: 1px solid #6f777b;
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+/* controls */
+
+.applicationControls {
+  float: left;
+  margin-right: 60px;
+  margin-top: 20px;
+}
+
+.applicationControls a {
+  text-decoration: none;
+}
+
+/* controls end */
+
+/* table */
+
+.govuk-table__header, .govuk-table__cell {
+  border-top: 1;
+}
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="coa-proto-1" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+ <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+<h1 class="govuk-heading-xl">TAP Prototypes<br><span style="font-size: 30px; color: #6f777b;">Alpha</span></h1>
+
+<div class="topSeparatingLine"></div>
+
+<div style="height: 20px;"></div>
+
+<div>
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 1</span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="">View</a></span></span></h2>
+</div>
+
+<div>
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 2</span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="/round-2-proto">View</a></span></span></h2>
+</div>
+
+<div>
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 3</span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="/round-3-proto">View</a></span></span></h2>
+
+<br>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Changes to to Round 3 prototype.<br><span><a href="/coa-proto-1">View</a></span></span></h2>
+</div>
+
+<div class="bottomSeparatingLine"></div>
+
+<div style="height: 25px;"></div>
+
+<div>
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Lab 1</span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="/coa-proto-3">View</a></span></span></h2>
+</div>
+
+</div>
+</div>
+
+</main>
+</div>
+
+
+<script>
+
+</script>
+</div>
+
+
+{% endblock %}
