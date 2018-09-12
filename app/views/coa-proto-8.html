@@ -1,0 +1,480 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+.topSeparatingLine {
+  width: 100%;
+  border-bottom: 4px solid #6f777b;
+  margin-top: -60px;
+  padding-bottom: 20px;
+}
+
+.bottomSeparatingLine {
+  width: 100%;
+  border-bottom: 1px solid #6f777b;
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+/* controls */
+
+.applicationControls {
+  float: left;
+  margin-right: 60px;
+  margin-top: 20px;
+}
+
+.applicationControls a {
+  text-decoration: none;
+}
+
+/* controls end */
+
+/* table */
+
+.govuk-table__header, .govuk-table__cell {
+  border-top: 1;
+}
+
+.tab {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* end of table */
+
+/* collapsible */
+
+.collapsible {
+    background-color: #ffffff;
+    color: black;
+    cursor: pointer;
+    padding: 0px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #ffffff;
+}
+
+.collapsible:after {
+    content: '\002B';
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    margin-top: -55px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content {
+    padding: 0 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: white;
+}
+
+/* end of collapsible */
+
+/* The Close Button */
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* end of modal */
+  
+/* timeline */
+
+#conference-timeline {
+  position: relative;
+  max-width: auto;
+  width: 100%;
+  align-items: left;
+  margin-left: 0px;
+
+}
+
+#conference-timeline .conference-center-line {
+  position: absolute;
+  width: 1px;
+  height: 90%;
+  top: 0;
+  bottom: 0px;
+  left: 7px;
+  margin-left: -1px;
+  background: #BFC1C3;
+
+}
+#conference-timeline .conference-timeline-content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.timeline-article {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.timeline-article .content-right-container {
+  max-width: 95%;
+  width: 100%;
+  margin-left: -20px;
+}
+
+
+.timeline-article .content-right {
+  position: relative;
+  width: 100%;
+  padding: 5px 3px;
+}
+.timeline-article p {
+  margin: 0 0 0 20;
+  padding: 0 0 0 0;
+  font-weight: 400;
+  color: #242424;
+  font-size: 16px;
+  line-height: 5px;
+  position: relative;
+}
+
+.timeline-article .content-right-container {
+  float: right;
+}
+
+.timeline-article .content-right:before{
+  position: absolute;
+  content: "";
+  left: 8px;
+  top: 20px;
+  font-size: 23px;
+  color: #fff;
+}
+
+.timeline-article .meta-date {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 7px;
+  height: 7px;
+  margin-left: -18px;
+  border-radius: 100%;
+  border: 1px solid #BFC1C3;
+  background: #BFC1C3;
+}
+
+.timeline-article .meta-date .date {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  color: #BFC1C3;
+
+}
+.timeline-article .meta-date .date {
+  font-size: 14px;
+  line-height: 10px;
+
+}
+
+/* timeline end */
+
+/* add modal */
+
+#modalContainer {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /*background-color: rgb(0, 0, 0);*/
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 0px;
+  height: 350px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  margin-top: 0px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* add modal end */
+
+/* layout */
+
+#wrapper {
+  width: 950px;
+  margin: 0 auto;
+}
+
+#leftcolumn,
+#rightcolumn {
+  border: 1px solid black;
+  float: left;
+  min-height: 830px;
+  color: white;
+  margin-left: -2px
+}
+
+#leftcolumn {
+  width: 650px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+#rightcolumn {
+  width: 268px;
+  background-color: #ffffff;
+  margin-left: 30px;
+  border: none;
+}
+
+.staticImage {
+  position: absolute;
+}
+
+/* layout ends */
+
+/* document gallery */
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+    /*float: left;
+    width: 0%;
+    padding: 10px;*/
+}
+
+/* Style the images inside the grid */
+.column img{ 
+    cursor: pointer; 
+}
+
+.column img:hover,
+.column img:focus {
+    outline: 3px solid #ffffff;
+    opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The expanding image container */
+.container {
+    position: relative;
+    display: none;
+    margin-top: -18px;
+}
+
+/* document gallery end */
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="coa-proto-1" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+ <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+<h1 class="govuk-heading-xl">COA: unidentified document<br><span style="font-size: 30px; color: #6f777b;"> for title number <span style="color: #0b0c0c;">EGL22376</span></span></h1>
+
+<div class="topSeparatingLine"></div>
+
+<div style="height: 20px;"></div>
+
+<!--div style="margin-top: 0px;">
+  <p style="margin-top: -2px; margin-left: 0px; font-size: 28px;"><span style="font-weight: bold;">Title:</span> Title of document</p>
+</div-->
+
+<div style="height: 30px;"></div>
+
+<div id="wrapper">
+  <div id="leftcolumn">
+
+    <div class="staticImage" style="margin-top: 0px;">
+      <img src="/public/images/ecoa2.png" style="width: 650px; height:812px;">
+    </div>
+
+    <div class="container">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <img id="expandedImg" style="width:100%">
+      <div id="imgtext"></div>
+    </div>   
+
+  </div>
+  <div id="rightcolumn">
+
+    <div class="row">
+
+      <h2 h2 class="govuk-heading-s" style="margin-left: 0px; margin-top: -4px;">Review document</h2>
+
+      <div class="column" style="float: left; margin-left: 10px;">
+          <img src="/public/images/document-image.png" style="width: 25px; height:31px;" onclick="myFunction(this)">
+      </div>
+
+      <div style="float: left;">
+
+          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Customer correspondence<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
+
+          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
+
+        </div>
+
+          <div style="clear: left;"></div>
+          <div style="clear: right;"></div>
+
+      <div style="height: 0px;"></div>
+
+      <button class="collapsible">
+          <span>
+            <h2 h2 class="govuk-heading-s" style="margin-left: 0px; margin-top: 0px;">Other documents</h2>
+          </span>
+        </button>
+          
+        <div class="content">
+
+        <div class="column" style="float: left; margin-left: 0px;">
+          <img src="/public/images/document-image.png" style="width: 25px; height:31px;" onclick="myFunction(this)">
+        </div>
+
+        <div style="float: left;">
+
+          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Evidence</p>
+
+          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
+
+        </div>
+
+          <div style="clear: left;"></div>
+          <div style="clear: right;"></div>
+
+          <div class="column" style="float: left; margin-left: 0px;">
+          <img src="/public/images/document-image.png" style="width: 25px; height:31px;" onclick="myFunction(this)">
+        </div>
+
+        <div style="float: left;">
+
+          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Power of attorney</p>
+
+          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
+
+        </div>
+
+          <div style="clear: left;"></div>
+          <div style="clear: right;"></div>
+
+          <div class="column" style="float: left; margin-left: 0px;">
+          <img src="/public/images/document-image.png" style="width: 25px; height:31px;" onclick="myFunction(this)">
+        </div>
+
+        <div style="float: left;">
+
+          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Evidence</p>
+
+          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
+
+        </div>
+
+          <div style="clear: left;"></div>
+          <div style="clear: right;"></div>
+
+        </div>
+
+  
+
+
+  </div>
+
+
+
+  </div>
+
+</div>
+
+  </div>
+</div>
+
+  </main>
+</div>
+
+
+
+<script>
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+
+function myFunction(imgs) {
+    var expandImg = document.getElementById("expandedImg");
+    var imgText = document.getElementById("imgtext");
+    expandImg.src = imgs.src;
+    imgText.innerHTML = imgs.alt;
+    expandImg.parentElement.style.display = "inline-block";
+}
+
+</script>
+</div>
+
+
+{% endblock %}
