@@ -315,6 +315,49 @@
 
 /* document gallery end */
 
+/* tabs */
+
+.tabs {
+  position: relative;   
+  min-height: 200px; /* This part sucks */
+  clear: both;
+  margin: 25px 0;
+}
+.tab {
+  float: left;
+}
+.tab label {
+  background: #eee; 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc; 
+}
+[type=radio]:checked ~ label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type=radio]:checked ~ label ~ .content {
+  z-index: 1;
+}
+
+/* tabs end */
+
 </style>
 
 <div class="govuk-width-container">
@@ -353,81 +396,36 @@
   </div>
   <div id="rightcolumn">
 
-    <div class="row">
-
-      <h2 h2 class="govuk-heading-s" style="margin-left: 0px; margin-top: -4px;">Review document</h2>
-
-      <div class="column" style="float: left; margin-left: 10px;">
-          <img src="/public/images/document-image.png" style="width: 25px; height:31px;">
-      </div>
-
-      <div style="float: left;">
-
-          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Unknown<span style="float: right; margin-left: 20px; font-size: 16px;"></span></p>
-
-          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
-
-        </div>
-
-          <div style="clear: left;"></div>
-          <div style="clear: right;"></div>
-
-      <div style="height: 0px;"></div>
-
-      <button class="collapsible">
-          <span>
-            <h2 h2 class="govuk-heading-s" style="margin-left: 0px; margin-top: 0px;">Other documents</h2>
-          </span>
-        </button>
-          
-        <div class="content">
-
-        <div class="column" style="float: left; margin-left: 0px;">
-          <img src="/public/images/document-image.png" style="width: 25px; height:31px;">
-        </div>
-
-        <div style="float: left;">
-
-          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Customer correspondence</p>
-
-          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
-
-        </div>
-
-          <div style="clear: left;"></div>
-          <div style="clear: right;"></div>
-
-          <div class="column" style="float: left; margin-left: 0px;">
-          <img src="/public/images/document-image.png" style="width: 25px; height:31px;">
-        </div>
-
-        <div style="float: left;">
-
-          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Power of attorney</p>
-
-          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
-
-        </div>
-
-          <div style="clear: left;"></div>
-          <div style="clear: right;"></div>
-
-          <div class="column" style="float: left; margin-left: 0px;">
-          <img src="/public/images/document-image.png" style="width: 25px; height:31px;">
-        </div>
-
-        <div style="float: left;">
-
-          <p style="margin-top: -3px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Title:</span> Evidence</p>
-
-          <p style="margin-top: -20px; margin-left: 10px; font-size: 14px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
-
-        </div>
-
-          <div style="clear: left;"></div>
-          <div style="clear: right;"></div>
-
-        </div>
+<div class="tabs">
+    
+   <div class="tab">
+       <input type="radio" id="tab-1" name="tab-group-1" checked>
+       <label for="tab-1">Tab One</label>
+       
+       <div class="content">
+           stuff
+       </div> 
+   </div>
+    
+   <div class="tab">
+       <input type="radio" id="tab-2" name="tab-group-1">
+       <label for="tab-2">Tab Two</label>
+       
+       <div class="content">
+           stuff
+       </div> 
+   </div>
+    
+    <div class="tab">
+       <input type="radio" id="tab-3" name="tab-group-1">
+       <label for="tab-3">Tab Three</label>
+     
+       <div class="content">
+           stuff
+       </div> 
+   </div>
+    
+</div>
 
   
 
@@ -463,14 +461,6 @@ for (i = 0; i < coll.length; i++) {
       content.style.maxHeight = content.scrollHeight + "px";
     } 
   });
-}
-
-function myFunction(imgs) {
-    var expandImg = document.getElementById("expandedImg");
-    var imgText = document.getElementById("imgtext");
-    expandImg.src = imgs.src;
-    imgText.innerHTML = imgs.alt;
-    expandImg.parentElement.style.display = "inline-block";
 }
 
 </script>
