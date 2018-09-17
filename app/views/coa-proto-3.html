@@ -339,6 +339,39 @@ a .js-enabled .govuk-tabs__tab {
 
 /* custom select end */
 
+/* document view */
+
+.overlay {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: -297px;
+  height: 100.5%;
+  width: 100%;
+  opacity: .5;
+  transition: .2s ease;
+  background-color: #008CBA;
+}
+
+.container:hover .overlay {
+  opacity: .75;
+}
+
+.magnifyIcon {
+  position: absolute;
+  margin-top: 0px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  
+}
+
+/* document view end */
+
 </style>
 
 <div class="govuk-width-container">
@@ -428,11 +461,18 @@ a .js-enabled .govuk-tabs__tab {
 </div>
 
 <div style="height: 20px;"></div>
+  <div class="container">
      <a href="/coa-proto-9" target="-blank_">   
     <div style="width: 210px;height: 290px;border:1px solid #6f777b;background: transparent; float: left;">
       <img src="/public/images/ecoa2.png" style="width: 200px; height:290px;">
+      <div class="overlay">
+        <div class="magnifyIcon" style="margin-top: 0px;">
+          <img src="/public/images/noun_magnifying icon.png">
+        </div>
+      </div>
     </div>
     </a>
+  </div>
 
     <div style="float: left;">
 
