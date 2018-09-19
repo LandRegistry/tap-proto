@@ -1,0 +1,185 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+.topSeparatingLine {
+  width: 100%;
+  border-bottom: 4px solid #6f777b;
+  margin-top: -60px;
+  padding-bottom: 20px;
+}
+
+.bottomSeparatingLine {
+  width: 100%;
+  border-bottom: 1px solid #6f777b;
+  margin-top: -20px;
+  padding-bottom: 20px;
+}
+
+/* controls */
+
+.applicationControls {
+  float: left;
+  margin-right: 60px;
+  margin-top: 20px;
+}
+
+.applicationControls a {
+  text-decoration: none;
+}
+
+/* controls end */
+
+/* table */
+
+.govuk-table__header, .govuk-table__cell {
+  border-top: 1;
+}
+
+/* table */
+
+/* tabs */
+
+.js-enabled .govuk-tabs__tab {
+  margin-right: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  float: left;
+  color: #0b0c0c;
+  background-color: none;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ffffff;
+}
+
+a .js-enabled .govuk-tabs__tab {
+  color: yellow
+}
+
+.js-enabled .govuk-tabs__tab[aria-selected="true"] {
+  margin-top: -4px;
+  margin-bottom: 1px;
+  padding-top: 14px;
+  padding-right: 10px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  border: none;
+  border-bottom: 4px solid #005ea5;
+  color: #0b0c0c;
+  background-color: #ffffff;
+}
+
+.govuk-tabs__tab:focus {
+  outline: none;
+}
+
+.js-enabled .govuk-tabs__panel {
+  border: none;
+}
+
+.js-enabled .govuk-tabs__list {
+  border-bottom: none;
+  height: 43px;
+  background-color: #ffffff;
+}
+
+/* tabs end */
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="coa-proto-1" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+ <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+<h1 class="govuk-heading-xl">TAP Design<br><span style="font-size: 30px; color: #6f777b;">Alpha/Beta</span></h1>
+
+<div class="topSeparatingLine"></div>
+
+<div style="height: 20px;"></div>
+
+<div class="govuk-tabs" data-module="tabs" style="margin-top: -5px;">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#activity">
+        Styles
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#notes">
+        Components
+      </a>
+    </li>
+  </ul>
+
+<section class="govuk-tabs__panel" id="activity" style="width: 100%; margin-top: 0px; margin-left: -20px;">
+
+  <section>
+  <h2 class="govuk-heading-m">Colours</h2>
+</section>
+
+</section>
+
+
+
+<section class="govuk-tabs__panel" id="notes" style="width: 100%; margin-top: 0px; margin-left: -20px;">
+    
+ <section>
+  <h2 class="govuk-heading-m">Buttons</h2>
+
+  <div class="bottomSeparatingLine"></div>
+
+    <h2 class="govuk-heading-m"style="margin-top: 30px;" >Checkboxes</h2>
+
+  <div class="bottomSeparatingLine"></div>
+
+    <h2 class="govuk-heading-m" style="margin-top: 30px;">Error message</h2>
+
+  <div class="bottomSeparatingLine"></div>
+
+    <h2 class="govuk-heading-m" style="margin-top: 30px;">Tabs</h2>
+
+
+
+  <div class="bottomSeparatingLine"></div>
+</section>   
+
+
+</section>
+
+
+  
+</div>
+
+</div>
+</div>
+
+</main>
+</div>
+
+
+<script>
+
+</script>
+</div>
+
+
+{% endblock %}
