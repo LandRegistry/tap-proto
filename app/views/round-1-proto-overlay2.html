@@ -1,0 +1,74 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+.topSeparatingLine {
+  width: 100%;
+  border-bottom: 4px solid #6f777b;
+  margin-top: -60px;
+  padding-bottom: 20px;
+}
+
+.bottomSeparatingLine {
+  width: 100%;
+  border-bottom: 1px solid #6f777b;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+/* cancel */
+
+.cancel {
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  background-color: transparent;
+}
+/* cancel end */
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="/round-1-proto" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+ <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+<div style="height: 0px;"></div>
+
+<div class="">
+  <img src="/public/images/round-1-proto-overlay2.png" style="width: 100%; height: 100%; position: relative;">
+
+<a href="/round-1-proto">
+<div class="cancel" style="margin-top: -172px; margin-left: 460px;">
+</div>
+</a>
+
+</div>
+
+
+</div>
+</div>
+
+</main>
+</div>
+
+
+<script>
+
+</script>
+</div>
+
+
+{% endblock %}

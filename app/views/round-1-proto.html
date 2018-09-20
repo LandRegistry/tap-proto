@@ -1,0 +1,101 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+.topSeparatingLine {
+  width: 100%;
+  border-bottom: 4px solid #6f777b;
+  margin-top: -60px;
+  padding-bottom: 20px;
+}
+
+.bottomSeparatingLine {
+  width: 100%;
+  border-bottom: 1px solid #6f777b;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+/* tooltip */
+
+.task {
+  position: absolute;
+  width: 88px;
+  height: 33px;
+  background-color: transparent;
+}
+
+.task .tasktext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #6f777b;
+    font-size: .6em;
+    color: #fff;
+    text-align: left;
+    border-radius: 3px;
+    padding: 5px 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.task:hover .tasktext {
+    visibility: visible;
+}
+
+/* tooltip end */
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="/round-1-proto-home" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+ <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+<div style="height: 0px;"></div>
+
+<div class="">
+  <img src="/public/images/round-1-proto-1-page.png" style="width: 100%; height: 100%; position: relative;">
+
+<a href="/round-1-proto-overlay1">
+<div class="task" style="margin-top: -298px; margin-left: 425px;">
+  <span class="tasktext" style="margin-left: 95px;">Unidentified document(s)</span>
+</div>
+</a>
+
+<a href="round-1-proto-overlay2">
+<div class="task" style="margin-top: -198px; margin-left: 425px;">
+  <span class="tasktext" style="margin-left: 95px;">Applicant is not the registered proprietor</span>
+</div>
+</a>
+
+</div>
+
+
+</div>
+</div>
+
+</main>
+</div>
+
+
+<script>
+
+</script>
+</div>
+
+
+{% endblock %}
