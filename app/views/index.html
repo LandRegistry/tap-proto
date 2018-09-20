@@ -5,68 +5,142 @@
   GOV.UK Prototype Kit
 {% endblock %}
 
-{% block content %}<style>
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
 
 .topSeparatingLine {
   width: 100%;
   border-bottom: 4px solid #6f777b;
-  margin-top: -50px;
+  margin-top: -60px;
   padding-bottom: 20px;
 }
 
 .bottomSeparatingLine {
   width: 100%;
   border-bottom: 1px solid #6f777b;
-  margin-top: -10px;
-  padding-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+/* controls */
+
+.applicationControls {
+  float: left;
+  margin-right: 60px;
+  margin-top: 20px;
+}
+
+.applicationControls a {
+  text-decoration: none;
+}
+
+/* controls end */
+
+/* table */
+
+.govuk-table__header, .govuk-table__cell {
+  border-top: 1;
 }
 
 </style>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+<div class="govuk-width-container">
+  <a href="coa-proto-1" class="govuk-back-link">Back</a>
 
+  <main class="govuk-main-wrapper">
 
-      <h1 class="govuk-heading-xl">TAP Prototypes<br><span style="font-size: 30px; color: #6f777b;">Alpha</span></h1>
+ <div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+<h1 class="govuk-heading-xl">TAP Prototypes<br><span style="font-size: 30px; color: #6f777b;">Alpha</span></h1>
 
 <div class="topSeparatingLine"></div>
 
 <div style="height: 20px;"></div>
 
 <div>
-<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 1</span></h2>
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 1 (COA/SEV)&nbsp;&nbsp;</span><span style="font-size: 20px; font-weight: normal;"><a href="/round-1-proto-home">(View)</a></span></h2>
 
-<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="">View</a></span></span></h2>
-</div>
-
-<div>
-<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 2</span></h2>
-
-<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="/round-2-proto">View</a></span></span></h2>
-</div>
-
-<div>
-<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 3</span></h2>
-
-<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="/round-3-proto">View</a></span></span></h2>
-
-<br>
-
-<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Changes to to Round 3 prototype.<br><span><a href="/coa-proto-1">View</a></span></span></h2>
 </div>
 
 <div class="bottomSeparatingLine"></div>
 
-<div style="height: 25px;"></div>
+<div>
+
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 2 (COA)&nbsp;&nbsp;</span><span style="font-size: 20px; font-weight: normal;"><a href="/round-2-proto">(View)</a></span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Changes:<span style="font-size: 20px; font-weight: normal;">
+  <br>
+  <ul>
+    <li>Workflow style bar is used to display information about an application</li>
+    <li>Bar expands to show detailed information about the application</li>
+    <li>The expanded content shows tabbed panes for displaying an Overview and Document types</li>
+    <li>To the right of the panes is a section for Keywords, Next actions and Activity</li>
+    <li>A ‘Review case’ button links to a documents page</li>
+  </ul>
 
 <div>
-<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Lab 1</span></h2>
 
-<h2 class="govuk-heading-s" style="margin-top: -20px;">Description:<span style="font-size: 20px; font-weight: normal;"> Blah<br><span><a href="/coa-proto-3">View</a></span></span></h2>
+  <div class="bottomSeparatingLine"></div>
+
+<div>
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 3 (COA)&nbsp;&nbsp;</span><span style="font-size: 20px; font-weight: normal;"><a href="/round-3-proto">(View)</a></span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Changes:<span style="font-size: 20px; font-weight: normal;">
+  <br>
+  <ul>
+    <li>Tabbed view is replaced by a single view to allow Overview and Documents to be seen simultaneously</li>
+    <li>Next action is moved to a more prominent position and highlighted with a blue box</li>
+    <li>Split buttons are used to displays a dropdown with a set of choices for either the application as a whole or the document</li>
+    <li>Selecting ‘Rename’ will display a modal for entering a document name</li>
+    <li>A ‘Done’ button is added to indicate when changes are ready to be submitted</li>
+  </ul>
+
+<div class="bottomSeparatingLine"></div>
+
+<div>
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 3.1 (COA)&nbsp;&nbsp;</span><span style="font-size: 20px; font-weight: normal;"><a href="/coa-proto-1">(View)</a></span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Changes:<span style="font-size: 20px; font-weight: normal;">
+  <br>
+  <ul>
+    <li>Split buttons are replaced with links, making all possible actions visible from the first window</li>
+    <li>‘Done’ button is shown in a disabled state (only after an action has been performed will the button become active)</li>
+  </ul>
+</div>
+
+<div class="bottomSeparatingLine"></div>
+
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 4 (COA)&nbsp;&nbsp;</span><span style="font-size: 20px; font-weight: normal;"><a href="/coa-proto-3">(View)</a></span></h2>
+
+<h2 class="govuk-heading-s" style="margin-top: -20px;">Changes:<span style="font-size: 20px; font-weight: normal;">
+  <br>
+  <ul>
+    <li>Overview removed to ensure that all focus is on the required actions</li>
+    <li>Descriptive language used to increase clarity of instructions</li>
+    <li>Notes added to allow users to record reasons behind decisions</li>
+    <li>Increased differentiation between documents for review and other application documents</li>
+  </ul>
+
+<div class="bottomSeparatingLine"></div>
+
+<h2 class="govuk-heading-s">Title:<span style="font-size: 20px; font-weight: normal;"> Round 4 (SEV)&nbsp;&nbsp;</span><span style="font-size: 20px; font-weight: normal;"><a href="/coa-proto-3">(View)</a></span></h2>
+</div>
+
+</div>
+</div>
+
+</main>
 </div>
 
 
-    </div>
+<script>
+
+</script>
 </div>
+
 
 {% endblock %}
