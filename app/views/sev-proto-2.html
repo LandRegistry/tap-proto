@@ -1,0 +1,745 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<style>
+
+.topSeparatingLine {
+  width: 100%;
+  border-bottom: 4px solid #6f777b;
+  margin-top: -60px;
+  padding-bottom: 20px;
+}
+
+.bottomSeparatingLine {
+  width: 100%;
+  border-bottom: 1px solid #6f777b;
+  margin-top: -41px;
+  padding-bottom: 20px;
+}
+
+/* controls */
+
+.btn-group .button {
+    background-color: #f8f8f8; /* Light grey */
+    border: none;
+    color: #0b0c0c;
+    padding: 10px 10px;
+    margin-top: 10px;
+    margin-right: 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+
+.btn-group .button:hover {
+    background-color: #6f777b;
+    border: none;
+    border-bottom: 2px solid #0b0c0c;
+    color: #ffffff;
+}
+
+.btn-draft .button {
+    background-color: #f8f8f8; /* Light grey */
+    border: none;
+    color: #0b0c0c;
+    padding: 10px 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 130px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+
+.btn-draft .button:hover {
+    background-color: #6f777b;
+    border: none;
+    border-bottom: 2px solid #0b0c0c;
+    color: #ffffff;
+}
+
+/* controls end */
+
+/* tabs */
+
+.js-enabled .govuk-tabs__tab {
+  margin-right: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  float: left;
+  color: #0b0c0c;
+  background-color: none;
+  text-align: center;
+  text-decoration: none;
+  background-color: #f8f8f8;
+}
+
+a .js-enabled .govuk-tabs__tab {
+  color: yellow
+}
+
+.js-enabled .govuk-tabs__tab[aria-selected="true"] {
+  margin-top: -4px;
+  margin-bottom: 1px;
+  padding-top: 14px;
+  padding-right: 10px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  border: none;
+  border-bottom: 4px solid #005ea5;
+  color: #0b0c0c;
+  background-color: #f8f8f8;
+}
+
+.govuk-tabs__tab:focus {
+  outline: none;
+}
+
+.js-enabled .govuk-tabs__panel {
+  border: none;
+}
+
+.js-enabled .govuk-tabs__list {
+  border-bottom: none;
+  height: 43px;
+  background-color: #f8f8f8;
+}
+
+/* tabs end */
+
+/* table */
+
+.govuk-table__header, .govuk-table__cell {
+  border-top: 1;
+}
+
+.tab {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* end of table */
+  
+/* timeline */
+
+#conference-timeline {
+  position: relative;
+  max-width: auto;
+  width: 100%;
+  align-items: left;
+  margin-left: 0px;
+
+}
+
+#conference-timeline .conference-center-line {
+  position: absolute;
+  width: 1px;
+  height: 90%;
+  top: 0;
+  bottom: 0px;
+  left: 7px;
+  margin-left: -1px;
+  background: #BFC1C3;
+
+}
+#conference-timeline .conference-timeline-content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.timeline-article {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.timeline-article .content-right-container {
+  max-width: 95%;
+  width: 100%;
+  margin-left: -20px;
+}
+
+
+.timeline-article .content-right {
+  position: relative;
+  width: 100%;
+  padding: 5px 3px;
+}
+.timeline-article p {
+  margin: 0 0 0 20;
+  padding: 0 0 0 0;
+  font-weight: 400;
+  color: #242424;
+  font-size: 16px;
+  line-height: 5px;
+  position: relative;
+}
+
+.timeline-article .content-right-container {
+  float: right;
+}
+
+.timeline-article .content-right:before{
+  position: absolute;
+  content: "";
+  left: 8px;
+  top: 20px;
+  font-size: 23px;
+  color: #fff;
+}
+
+.timeline-article .meta-date {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 7px;
+  height: 7px;
+  margin-left: -18px;
+  border-radius: 100%;
+  border: 1px solid #BFC1C3;
+  background: #BFC1C3;
+}
+
+.timeline-article .meta-date .date {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  color: #BFC1C3;
+
+}
+.timeline-article .meta-date .date {
+  font-size: 14px;
+  line-height: 10px;
+
+}
+
+/* timeline end */
+
+/* add modal */
+
+#modalContainer {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 0px;
+  height: 300px;
+  border: 1px solid #888;
+  width: 40%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  margin-top: 0px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* add modal end */
+
+/* custom select */
+
+.custom-select {
+  position: relative;
+  font-family: Helvetica;
+  /*border: 1px solid #0b0c0c;*/
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #ffffff;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #0b0c0c transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #0b0c0c transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #0b0c0c;
+  padding: 9px 16px;
+  margin-top: -1px;
+  border: 1px solid black;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #ffffff;
+  top: 98%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* custom select end */
+
+</style>
+
+<div class="govuk-width-container">
+  <a href="/index" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+  <!-- The Modal -->
+
+  <div id="modalContainer">
+
+  <div class="modal-content">
+    <span class="close" style="margin-right: 20px; margin-top: 20px;">&times;</span>
+    <h2 h2 class="govuk-heading-m" style="margin-left: 20px; margin-top: 25px;">Rename the document</h2>
+    <hr>
+
+<div class="govuk-form-group" style="margin-top: 40px; margin-left: 20px;">
+  <label class="govuk-label" for="new-title">
+    Choose a title for the document
+  </label>
+</div>
+
+<div class="custom-select" style="width:420px; margin-top: -20px; margin-bottom: 30px; margin-left: 20px;">
+  <select>
+    <option value="0">Customer correspondence</option>
+    <option value="1">Application form</option>
+    <option value="2">Evidence</option>
+    <option value="3">Identity</option>
+  </select>
+</div>
+
+    
+<a href="/coa-proto-4">
+<button type="submit" class="govuk-button" style="float: right; margin-top: -69px; margin-right: 20px;">
+  Update
+</button>
+</a>
+
+<div style="clear: right;"></div>
+
+</div>
+
+  </div>
+
+</div>
+
+  <!-- Modal content -->
+
+<h1 class="govuk-heading-xl">SEV: unidentified document<br><span style="font-size: 30px; color: #6f777b;"> for title number <span style="color: #0b0c0c;">EGL22376</span></span></h1>
+
+<div class="topSeparatingLine"></div>
+
+<div style="width: 100%; height: 60px; background-color: #f8f8f8">
+
+<div class="btn-group">
+  <button class="button" style="font-size: 16px; margin-left: 15px;">Refer application</button>
+  <button class="button" style="font-size: 16px;" >Raise a requisition</button>
+  <button class="button" style="font-size: 16px;">Cancel application</button>
+</div>
+
+<div class="btn-draft">
+  <button class="button" style="font-size: 16px;">Save as draft</button> 
+</div>
+
+<button type="submit" disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" style="float: right; margin-top: 10px; margin-right: 15px;">
+  Done
+</button>
+
+</div>
+
+<div style="clear: both;"></div>
+
+
+<div class="bottomSeparatingLine"></div>
+
+<div style="height: 20px;"></div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <div style="height: 0px;"></div>
+
+<h2 class="govuk-heading-m">Task description</h2>
+
+<div style="border-left: 6px solid #005ea5;">
+  <p style="margin-left: 10px;">An <b>unidentified document</b> has been submitted with this application.<br>Please review and name it.</p>
+</div>
+
+<div style="height: 20px;"></div>
+
+<div class="container">
+     <a href="/coa-proto-10" target="-blank_">   
+    <div style="width: 210px;height: 290px;border:1px solid #6f777b;background: transparent; float: left;">
+      <img src="/public/images/notice-of-sev-1.png" style="width: 200px; height:290px;">
+      <div class="overlay">
+        <div class="magnifyIcon" style="margin-top: 0px;">
+          <img src="/public/images/noun_magnifying icon.png">
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+     <!--a href="/coa-proto-9" target="-blank_">   
+    <div style="width: 210px;height: 290px;border:1px solid #6f777b;background: transparent; float: left;">
+      <img src="/public/images/ecoa2.png" style="width: 200px; height:290px;">
+    </div>
+    </a-->
+
+    <div style="float: left;">
+
+    <p style="margin-top: -3px; margin-left: 10px; font-size: 16px;"><span style="font-weight: bold;">Title:</span> Unknown<span style="float: right; margin-left: 20px; font-size: 16px;"><a href="">Decline</a></span><span style="margin-left: 165px; font-size: 16px;""><a href="#" id="myBtn">Accept</a></span></p>
+
+    <p style="margin-top: -10px; margin-left: 10px; font-size: 16px;"><span style="font-weight: bold;">Date received:</span> 12/08/2018</p>
+
+  </div>
+
+    <div style="clear: left;"></div>
+    <div style="clear: right;"></div>
+  
+<div style="margin-top: 20px;"></div> 
+    
+</div>
+
+<div class="govuk-grid-column-one-third">
+
+<!--div style="width: 100%; height: 40px; background-color: #ffffff; margin-top: -40px;"></div-->
+
+<div class="govuk-tabs" data-module="tabs" style="margin-top: -5px;">
+  <h2 class="govuk-tabs__title">
+    Contents
+  </h2>
+
+  <ul class="govuk-tabs__list">
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#activity">
+        Activity
+      </a>
+    </li>
+    <li class="govuk-tabs__list-item">
+      <a class="govuk-tabs__tab" href="#notes">
+        Notes
+      </a>
+    </li>
+  </ul>
+
+<section class="govuk-tabs__panel" id="activity" style="width: 100%; margin-top: -10px; margin-left: -20px;">
+
+      <section id="conference-timeline">
+
+    <div class="conference-center-line"></div>
+    <div class="conference-timeline-content">
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="govuk-body" style="color: #BFC1C3">Today</p>
+            <p class="govuk-body">Unknown document was referred for</p>
+            <p style="margin-top: -5px;">review.</p>
+            <p class="govuk-body"> <a href="">See more</a></p>
+            <p>Raised by the APE</p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+          
+        </div>
+      </div>
+      <!-- // Article -->
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="govuk-body" style="color: #BFC1C3">Yesterday</p>
+            <p class="govuk-body">Application was received.</p>
+            <p class="govuk-body"> <a href="">See more</a></p>
+            <p>Raised by the APE</p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+          
+        </div>
+      </div>
+      <!-- // Article -->
+
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="content-complete"><a href="">See all activity</a></p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+      <!-- // Article -->
+      
+    </div>
+
+  </section>
+
+</section>
+
+  <section class="govuk-tabs__panel" id="notes" style="width: 100%; margin-top: 0px; margin-left: -20px;">
+    
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="more-detail" style="font-size: 16px;">
+    Can you provide more detail?
+  </label>
+  <span id="more-detail-hint" class="govuk-hint" style="font-size: 16px;" >
+    Don’t include personal or financial information.
+  </span>
+  <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+</div>
+
+<section id="conference-timeline">
+
+    <div class="conference-center-line"></div>
+    <div class="conference-timeline-content">
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="govuk-body" style="color: #BFC1C3">Today</p>
+            <p class="govuk-body">Unknown document was referred for</p>
+            <p style="margin-top: -5px;">review.</p>
+            <p class="govuk-body"> <a href="">See more</a></p>
+            <p>Raised by the APE</p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+          
+        </div>
+      </div>
+      <!-- // Article -->
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="govuk-body" style="color: #BFC1C3">Yesterday</p>
+            <p class="govuk-body">Application was received.</p>
+            <p class="govuk-body"> <a href="">See more</a></p>
+            <p>Raised by the APE</p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+          
+        </div>
+      </div>
+      <!-- // Article -->
+
+
+      <!-- Article -->
+      <div class="timeline-article">
+        <div class="content-right-container">
+          <div class="content-right">
+            <p class="content-complete"><a href="">See all notes</a></p>
+          </div>
+
+        </div>
+        <div class="meta-date">
+      <!-- // Article -->
+      
+    </div>
+
+  </section>
+
+
+  </section>
+
+  <div style="width: 100%; height: 40px; background-color: #ffffff; margin-top: -40px;"></div>
+  
+</div>
+
+
+  
+  
+
+      </div>
+    </div>
+
+
+
+  </main>
+</div>
+
+
+
+<script>
+
+  
+$(document).ready(function() {
+
+
+  $("#myBtn").on("click", function() {
+    $("#modalContainer").show();
+  });
+
+  $(".close").on("click", function() {
+    $("#modalContainer").hide();
+  });
+
+});
+
+    var showForm = function() {
+    var allForms = document.getElementsByTagName('form');
+    var dropdown = document.getElementById("dropdown");
+    if (dropdown.value != "-1") {
+        var form = document.getElementById(dropdown.value);
+        for (var i = 0; i < allForms.length; i++) {
+            allForms[i].setAttribute("class", "display-none");
+        }
+        form.setAttribute("class", "");
+    }
+}
+
+/* custom select */
+
+var x, i, j, selElmnt, a, b, c;
+/*look for any elements with the class "custom-select":*/
+x = document.getElementsByClassName("custom-select");
+for (i = 0; i < x.length; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  /*for each element, create a new DIV that will act as the selected item:*/
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /*for each element, create a new DIV that will contain the option list:*/
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 0; j < selElmnt.length; j++) {
+    /*for each option in the original select element,
+    create a new DIV that will act as an option item:*/
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /*when an item is clicked, update the original select box,
+        and the selected item:*/
+        var y, i, k, s, h;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < s.length; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            for (k = 0; k < y.length; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      /*when the select box is clicked, close any other select boxes,
+      and open/close the current select box:*/
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+    });
+}
+function closeAllSelect(elmnt) {
+  /*a function that will close all select boxes in the document,
+  except the current select box:*/
+  var x, y, i, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  for (i = 0; i < y.length; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < x.length; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener("click", closeAllSelect);
+
+/* custom select end */
+
+</script>
+</div>
+
+
+{% endblock %}
